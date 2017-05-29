@@ -1,350 +1,352 @@
 
-      var map;
-      // Create a new blank array for all the listing markers.
-      var markers = [];
-    // created and downloaded from snazzymap
-	  var styles = [
+var mapError = function(){
+  alert("Google API loaded Incorrectly. Please try again later");
+}
+var map;
+// Create a new blank array for all the listing markers.
+var markers = [];
+// created and downloaded from snazzymap
+var styles = [
+  {
+    "featureType": "all",
+    "elementType": "geometry",
+    "stylers":
+     [{
+        "color": "#63b5e5"
+      }]
+  },
+  {
+    "featureType": "all",
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "on"
+      },
+      {
+        "color": "#394648"
+      }
+      ]
+  },
+  {
+    "featureType": "all",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "gamma": 0.01
+      },
+      {
+        "lightness": 20
+      }
+      ]
+  },
+  {
+    "featureType": "all",
+    "elementType": "labels.text.stroke",
+    "stylers": [
+      {
+        "saturation": -31
+      },
+      {
+        "lightness": -33
+      },
+      {
+        "weight": 2
+      },
+      {
+        "gamma": 0.8
+      }
+      ]
+  },
+  {
+    "featureType": "all",
+    "elementType": "labels.icon",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+      ]
+  },
+  {
+    "featureType": "administrative",
+    "elementType": "all",
+    "stylers": [
+      {
+        "visibility": "simplified"
+      }
+      ]
+  },
+  {
+    "featureType": "administrative.province",
+    "elementType": "labels.icon",
+    "stylers": [
+      {
+        "color": "#644747"
+      }
+      ]
+  },
+  {
+    "featureType": "administrative.land_parcel",
+    "elementType": "all",
+    "stylers": [
+      {
+        "color": "#0d0202"
+      },
+      {
+        "visibility": "off"
+      }
+      ]
+  },
+  {
+    "featureType": "landscape",
+    "elementType": "all",
+    "stylers": [
+      {
+        "visibility": "on"
+      },
+      {
+        "color": "#b04a49"
+      }
+      ]
+  },
+  {
+    "featureType": "landscape",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "lightness": 30
+      },
+      {
+        "saturation": 30
+      }
+      ]
+  },
+  {
+    "featureType": "landscape",
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+      ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "all",
+    "stylers": [
     {
-        "featureType": "all",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#63b5e5"
-            }
+      "visibility": "off"
+    }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "geometry",
+    "stylers": [
+      {
+      "saturation": 20
+      }
+      ]
+    },
+    {
+      "featureType": "poi.attraction",
+      "elementType": "all",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
         ]
     },
     {
-        "featureType": "all",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "on"
-            },
-            {
-                "color": "#394648"
-            }
+      "featureType": "poi.business",
+      "elementType": "all",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
         ]
     },
     {
-        "featureType": "all",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "gamma": 0.01
-            },
-            {
-                "lightness": 20
-            }
+      "featureType": "poi.government",
+      "elementType": "all",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
         ]
     },
     {
-        "featureType": "all",
-        "elementType": "labels.text.stroke",
-        "stylers": [
-            {
-                "saturation": -31
-            },
-            {
-                "lightness": -33
-            },
-            {
-                "weight": 2
-            },
-            {
-                "gamma": 0.8
-            }
+      "featureType": "poi.medical",
+      "elementType": "all",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
         ]
     },
     {
-        "featureType": "all",
-        "elementType": "labels.icon",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
+      "featureType": "poi.park",
+      "elementType": "all",
+      "stylers": [
+        {
+          "visibility": "on"
+        }
         ]
     },
     {
-        "featureType": "administrative",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "simplified"
-            }
+      "featureType": "poi.park",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "lightness": 20
+        },
+        {
+        "saturation": -20
+        },
+        {
+          "color": "#b04a49"
+        }
         ]
-    },
-    {
-        "featureType": "administrative.province",
-        "elementType": "labels.icon",
-        "stylers": [
-            {
-                "color": "#644747"
-            }
+     },
+     {
+      "featureType": "poi.park",
+      "elementType": "labels",
+      "stylers": [
+        {
+          "visibility": "on"
+        },
+        {
+          "weight": "0.14"
+        }
         ]
-    },
-    {
-        "featureType": "administrative.land_parcel",
-        "elementType": "all",
-        "stylers": [
-            {
-                "color": "#0d0202"
-            },
-            {
-                "visibility": "off"
-            }
+     },
+     {
+      "featureType": "poi.place_of_worship",
+      "elementType": "all",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
         ]
-    },
-    {
-        "featureType": "landscape",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "on"
-            },
-            {
-                "color": "#b04a49"
-            }
-        ]
-    },
-    {
-        "featureType": "landscape",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "lightness": 30
-            },
-            {
-                "saturation": 30
-            }
-        ]
-    },
-    {
-        "featureType": "landscape",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "poi",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "poi",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "saturation": 20
-            }
-        ]
-    },
-    {
-        "featureType": "poi.attraction",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.business",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.government",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.medical",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.park",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "on"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.park",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "lightness": 20
-            },
-            {
-                "saturation": -20
-            },
-            {
-                "color": "#b04a49"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.park",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "on"
-            },
-            {
-                "weight": "0.14"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.place_of_worship",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
+      },
+      {
         "featureType": "poi.school",
         "elementType": "all",
         "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
+          {
+            "visibility": "off"
+          }
+          ]
+      },
+      {
         "featureType": "poi.sports_complex",
         "elementType": "all",
         "stylers": [
-            {
-                "visibility": "off"
+          {
+            "visibility": "off"
+          }
+          ]
+       },
+       {
+         "featureType": "road",
+         "elementType": "all",
+         "stylers": [
+           {
+             "visibility": "off"
             }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "all",
-        "stylers": [
+            ]
+        },
+        {
+          "featureType": "road",
+          "elementType": "geometry",
+          "stylers": [
             {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "lightness": 10
+              "lightness": 10
             },
             {
-                    "color": "#ffffff"
+              "color": "#ffffff"
             },
             {
-                "saturation": -30
+              "saturation": -30
             }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "geometry.stroke",
-        "stylers": [
-            {
+            ]
+          },
+          {
+            "featureType": "road",
+            "elementType": "geometry.stroke",
+            "stylers": [
+              {
                 "saturation": 25
-            },
-            {
+              },
+              {
                 "lightness": 25
-            }
-        ]
-    },
-    {
-        "featureType": "transit",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#394648"
-            }
-        ]
-    },
-    {
-        "featureType": "transit",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "color": "#ffffff"
+              }
+              ]
             },
             {
-                "weight": "1.23"
+              "featureType": "transit",
+              "elementType": "geometry",
+              "stylers": [
+                {
+                  "color": "#394648"
+                }
+                ]
             },
             {
-                "gamma": "0.69"
-            }
-        ]
-    },
-    {
-        "featureType": "transit.station.airport",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "on"
-            }
-        ]
-    },
-    {
-        "featureType": "transit.station.bus",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "on"
-            }
-        ]
-    },
-    {
-        "featureType": "transit.station.rail",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "on"
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "elementType": "all",
-        "stylers": [
-            {
-                "lightness": -20
+              "featureType": "transit",
+              "elementType": "labels",
+              "stylers": [
+                {
+                  "color": "#ffffff"
+                },
+                {
+                  "weight": "1.23"
+                },
+                {
+                  "gamma": "0.69"
+                }
+                ]
             },
             {
-                "color": "#ffffff"
+              "featureType": "transit.station.airport",
+              "elementType": "all",
+              "stylers": [
+                {
+                  "visibility": "on"
+                }
+                ]
+            },
+            {
+              "featureType": "transit.station.bus",
+              "elementType": "all",
+              "stylers": [
+                {
+                  "visibility": "on"
+                }
+                ]
+            },
+            {
+              "featureType": "transit.station.rail",
+              "elementType": "all",
+              "stylers": [
+                {
+                  "visibility": "on"
+                }
+                ]
+            },
+            {
+              "featureType": "water",
+              "elementType": "all",
+              "stylers": [
+                {
+                  "lightness": -20
+                },
+                {
+                  "color": "#ffffff"
+                }
+                ]
             }
-        ]
-    }
-]
-
+];
+var largeInfowindow;
 var loc = 23;
 
 var locations = [
@@ -362,7 +364,6 @@ var locations = [
 
 function initMap() {
         // Constructor creates a new map - only center and zoom are required.
-
         map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: 36.34829, lng: 138.596955},
 		        styles: styles,
@@ -372,14 +373,10 @@ function initMap() {
 		        rotateControl: false
         });
 
-		function makeMarkerIcon(){
-			var markerImage = new google.maps.MarkerImage(
-			new google.maps.Size(40,26),
-			new google.maps.Point(0,0),
-			new google.maps.Point(10,34),
-			new google.maps.Size(40,26));
-			return markerImage;
-		}
+		    function makeMarkerIcon(){
+			       var markerImage = new google.maps.MarkerImage('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
+			       return markerImage;
+		    }
 
 				var defaultIcon = makeMarkerIcon();
 
@@ -390,45 +387,52 @@ function initMap() {
         var bounds = new google.maps.LatLngBounds();
         // The following group uses the location array to create an array of markers on initialize.
         for (var i = 0; i < locations.length; i++) {
-          // Get the position from the location array.
-          var position = locations[i].location;
-          var title = locations[i].title;
-          // Create a marker per location, and put into markers array.
-          var marker = new google.maps.Marker({
-            map: map,
-            position: position,
-			      icon: defaultIcon,
-            title: title,
-            animation: google.maps.Animation.DROP,
-            id: i
-          });
-          // Push the marker to our array of markers.
-          markers.push(marker);
+            // Get the position from the location array.
+            var position = locations[i].location;
+            var title = locations[i].title;
+            // Create a marker per location, and put into markers array.
+            var marker = new google.maps.Marker({
+                map: map,
+                position: position,
+			          icon: defaultIcon,
+                title: title,
+                animation: google.maps.Animation.DROP,
+                id: i,
+            });
+            // Push the marker to our array of markers.
+            markers.push(marker);
           // Create an onclick event to open an infowindow at each marker.
-          bounds.extend(markers[i].position);
+            bounds.extend(markers[i].position);
         }
         // Extend the boundaries of the map for each marker
         map.fitBounds(bounds);
-      }
-      // This function populates the infowindow when the marker is clicked. We'll only allow
-      // one infowindow which will open at the marker that is clicked, and populate based
-      // on that markers position.
+        var largeInfowindow = new google.maps.InfoWindow({maxWidth: 320});
+        initModel(largeInfowindow);
+}
+// This function populates the infowindow when the marker is clicked. We'll only allow
+// one infowindow which will open at the marker that is clicked, and populate based
+// on that markers position.
 
-    function populateInfoWindow(infowindow, location){
-      if (infowindow.marker != location.marker){
-        infowindow.marker = location.marker;
-        infowindow.setContent('<img style="border-radius: 100%; float: right" src="'+ location.img +'">' + '<div><h1>' + location.marker.title + '</h1></div>'+
-        '<div style="text-transform: capitalize">' + location.weather + '</div>' + '<div>' + location.temp.toFixed(2) + '&degC</div>'
-        + '<div>' + location.description + '</div>');
-        infowindow.open(map,location.marker);
-        infowindow.addListener('click',function(){
-          infowindow.setMarker(null);
-        });
-      }
-      else{
-        infowindow.marker = null;
-        infowindow.close();
-      }
-    }
+function populateInfoWindow(infowindow, location){
+        if (infowindow.marker != location.marker){
+            if(infowindow.marker != undefined){
+                infowindow.marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+              }
 
-    initMap();
+            infowindow.marker = location.marker;
+            location.marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+            infowindow.setContent('<img style="border-radius: 100%; float: right" src="'+ location.img +'">' + '<div><h1>' + location.marker.title + '</h1></div>'+
+            '<div style="text-transform: capitalize">' + location.weather + '</div>' + '<div>' + location.temp.toFixed(2) + '&degC</div>'
+            + '<div>' + location.description + '</div>');
+            infowindow.open(map,location.marker);
+            infowindow.addListener('click',function(){
+                location.marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
+                infowindow.setMarker(null);
+            });
+        }
+        else{
+            infowindow.marker = null;
+            location.marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+            infowindow.close();
+        }
+}

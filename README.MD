@@ -2,6 +2,8 @@
 
 This creates a map that shows all the locations that I visited while I was in Japan.  In order to use the map you can do one of two things.
 
+In order to open this project you should open the index.html file with any broswer. That will open the project.
+
 Two API's are used in this. The first is a weather API that pulls weather information from the each location. The second is google streetview which is what is used to pull the image for the picture's information box.
 
 1. Click on a marker to learn more about it.
