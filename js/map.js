@@ -414,13 +414,13 @@ function initMap() {
       // one infowindow which will open at the marker that is clicked, and populate based
       // on that markers position.
 
-    function populateInfoWindow(marker, infowindow, weather, temp, description, img){
-      if (infowindow.marker != marker){
-        infowindow.marker = marker;
-        infowindow.setContent('<img style="border-radius: 100%; float: right" src="'+ img +'">' + '<div><h1>' + marker.title + '</h1></div>'+
-        '<div style="text-transform: capitalize">' + weather + '</div>' + '<div>' + temp.toFixed(2) + '&degC</div>'
-        + '<div>' + description + '</div>');
-        infowindow.open(map,marker);
+    function populateInfoWindow(infowindow, location){
+      if (infowindow.marker != location.marker){
+        infowindow.marker = location.marker;
+        infowindow.setContent('<img style="border-radius: 100%; float: right" src="'+ location.img +'">' + '<div><h1>' + location.marker.title + '</h1></div>'+
+        '<div style="text-transform: capitalize">' + location.weather + '</div>' + '<div>' + location.temp.toFixed(2) + '&degC</div>'
+        + '<div>' + location.description + '</div>');
+        infowindow.open(map,location.marker);
         infowindow.addListener('click',function(){
           infowindow.setMarker(null);
         });

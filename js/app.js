@@ -10,7 +10,7 @@ var Location = function(data){
   this.description = data.description;
   this.img = data.img;
 }
-
+var largeInfowindow = new google.maps.InfoWindow({maxWidth: 320});
 var Locations = [];
 var initModel = function(){
   var counter = 0;
@@ -29,6 +29,9 @@ var initModel = function(){
         weather = response.weather["0"].description;
         Locations[count].weather = weather;
         Locations[count].temp = temperature;
+        Locations[count].marker.addListener("click",function(){
+          populateInfoWindow(largeInfowindow, Locations[count]);
+        });
       },
       error: function(response){
         Locations[count].weather = "Weather Not available right now";
@@ -36,6 +39,9 @@ var initModel = function(){
       },
       async: false
     });
+
+
+
     // pushes to my locations array holding Location objects
     Locations.push(new Location({
       title: ko.observable(location.title),
@@ -48,9 +54,12 @@ var initModel = function(){
       marker: markers[counter],
       onMap : ko.observable(1)
     }));
+
     counter += 1;
   });
 }
+
+
 
 // a function found on stackoverflow that replicates the knockoutjs utility funciton
 // of the same name.
@@ -87,12 +96,8 @@ var ViewModel = function(){
     }
   }, this);
 
-  var largeInfowindow = new google.maps.InfoWindow({maxWidth: 320});
-  Locations.forEach(function(location){
-
-  });
   this.toggleMap = function(){
-      populateInfoWindow(this.marker,largeInfowindow, this.weather, this.temp, this.description, this.img);
+      populateInfoWindow(largeInfowindow, this);
 
   }
 
