@@ -2,60 +2,10 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width">
-    <style>
-      html,
-      body {
-        font-family: Arial, sans-serif;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 100%;
-      }
-      .list-item {
-        padding: 10px;
-        border: 1px solid;
 
-      }
-      .list-item:hover  {
-        background-color:  #b04a49;
-        color: white;
-        cursor: hand;
-        cursor: pointer;
-      }
-      .main{
-        width: 200px;
-      }
-      .main-list{
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-        width: 100%;
-      }
-      .filter{
-        width: 90%;
-        margin-left: 5%;
-        margin-top: 5%;
-        margin-bottom: 5%;
-      }
-      @media screen and (max-width: 750px){
-        .main{
-          width: 100%;
-        }
-        .main-list{
-          height: 175px;
-          overflow: scroll;
-        }
-      }
-      @media screen and (min-width: 751px){
-        .main{
-          float: left;
-        }
-      }
-    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   </head>
+  <link rel="stylesheet" type="text/css" href="./css/styles.css">
   <body>
   <div class="main" id="list">
     <input class="filter" data-bind="value: currentFilter, valueUpdate: 'afterkeydown'" />
