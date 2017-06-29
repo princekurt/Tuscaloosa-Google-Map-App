@@ -6,375 +6,289 @@ var map;
 var markers = [];
 // created and downloaded from snazzymap
 var styles = [{
-        "featureType": "all",
-        "elementType": "geometry",
-        "stylers": [{
-            "color": "#63b5e5"
-        }]
-    },
-    {
-        "featureType": "all",
-        "elementType": "labels",
-        "stylers": [{
-                "visibility": "on"
-            },
-            {
-                "color": "#394648"
-            }
-        ]
-    },
-    {
-        "featureType": "all",
-        "elementType": "labels.text.fill",
-        "stylers": [{
-                "gamma": 0.01
-            },
-            {
-                "lightness": 20
-            }
-        ]
-    },
-    {
-        "featureType": "all",
-        "elementType": "labels.text.stroke",
-        "stylers": [{
-                "saturation": -31
-            },
-            {
-                "lightness": -33
-            },
-            {
-                "weight": 2
-            },
-            {
-                "gamma": 0.8
-            }
-        ]
-    },
-    {
-        "featureType": "all",
-        "elementType": "labels.icon",
-        "stylers": [{
-            "visibility": "off"
-        }]
-    },
-    {
-        "featureType": "administrative",
-        "elementType": "all",
-        "stylers": [{
-            "visibility": "simplified"
-        }]
-    },
-    {
-        "featureType": "administrative.province",
-        "elementType": "labels.icon",
-        "stylers": [{
-            "color": "#644747"
-        }]
-    },
-    {
-        "featureType": "administrative.land_parcel",
-        "elementType": "all",
-        "stylers": [{
-                "color": "#0d0202"
-            },
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "landscape",
-        "elementType": "all",
-        "stylers": [{
-                "visibility": "on"
-            },
-            {
-                "color": "#b04a49"
-            }
-        ]
-    },
-    {
-        "featureType": "landscape",
-        "elementType": "geometry",
-        "stylers": [{
-                "lightness": 30
-            },
-            {
-                "saturation": 30
-            }
-        ]
-    },
-    {
-        "featureType": "landscape",
-        "elementType": "labels",
-        "stylers": [{
-            "visibility": "off"
-        }]
-    },
-    {
-        "featureType": "poi",
-        "elementType": "all",
-        "stylers": [{
-            "visibility": "off"
-        }]
-    },
-    {
-        "featureType": "poi",
-        "elementType": "geometry",
-        "stylers": [{
-            "saturation": 20
-        }]
-    },
-    {
-        "featureType": "poi.attraction",
-        "elementType": "all",
-        "stylers": [{
-            "visibility": "off"
-        }]
-    },
-    {
-        "featureType": "poi.business",
-        "elementType": "all",
-        "stylers": [{
-            "visibility": "off"
-        }]
-    },
-    {
-        "featureType": "poi.government",
-        "elementType": "all",
-        "stylers": [{
-            "visibility": "off"
-        }]
-    },
-    {
-        "featureType": "poi.medical",
-        "elementType": "all",
-        "stylers": [{
-            "visibility": "off"
-        }]
-    },
-    {
-        "featureType": "poi.park",
-        "elementType": "all",
-        "stylers": [{
-            "visibility": "on"
-        }]
-    },
-    {
-        "featureType": "poi.park",
-        "elementType": "geometry",
-        "stylers": [{
-                "lightness": 20
-            },
-            {
-                "saturation": -20
-            },
-            {
-                "color": "#b04a49"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.park",
-        "elementType": "labels",
-        "stylers": [{
-                "visibility": "on"
-            },
-            {
-                "weight": "0.14"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.place_of_worship",
-        "elementType": "all",
-        "stylers": [{
-            "visibility": "off"
-        }]
-    },
-    {
-        "featureType": "poi.school",
-        "elementType": "all",
-        "stylers": [{
-            "visibility": "off"
-        }]
-    },
-    {
-        "featureType": "poi.sports_complex",
-        "elementType": "all",
-        "stylers": [{
-            "visibility": "off"
-        }]
-    },
-    {
-        "featureType": "road",
-        "elementType": "all",
-        "stylers": [{
-            "visibility": "off"
-        }]
-    },
-    {
-        "featureType": "road",
-        "elementType": "geometry",
-        "stylers": [{
-                "lightness": 10
-            },
-            {
-                "color": "#ffffff"
-            },
-            {
-                "saturation": -30
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "geometry.stroke",
-        "stylers": [{
-                "saturation": 25
-            },
-            {
-                "lightness": 25
-            }
-        ]
-    },
-    {
-        "featureType": "transit",
-        "elementType": "geometry",
-        "stylers": [{
-            "color": "#394648"
-        }]
-    },
-    {
-        "featureType": "transit",
-        "elementType": "labels",
-        "stylers": [{
-                "color": "#ffffff"
-            },
-            {
-                "weight": "1.23"
-            },
-            {
-                "gamma": "0.69"
-            }
-        ]
-    },
-    {
-        "featureType": "transit.station.airport",
-        "elementType": "all",
-        "stylers": [{
-            "visibility": "on"
-        }]
-    },
-    {
-        "featureType": "transit.station.bus",
-        "elementType": "all",
-        "stylers": [{
-            "visibility": "on"
-        }]
-    },
-    {
-        "featureType": "transit.station.rail",
-        "elementType": "all",
-        "stylers": [{
-            "visibility": "on"
-        }]
-    },
-    {
-        "featureType": "water",
-        "elementType": "all",
-        "stylers": [{
-                "lightness": -20
-            },
-            {
-                "color": "#ffffff"
-            }
-        ]
-    }
+  "featureType": "administrative",
+  "elementType": "labels.text.fill",
+  "stylers": [
+      {
+          "color": "#444444"
+      }
+  ]
+},
+{
+  "featureType": "administrative.locality",
+  "elementType": "geometry.fill",
+  "stylers": [
+      {
+          "visibility": "simplified"
+      },
+      {
+          "color": "#951919"
+      }
+  ]
+},
+{
+  "featureType": "administrative.neighborhood",
+  "elementType": "geometry.fill",
+  "stylers": [
+      {
+          "visibility": "on"
+      },
+      {
+          "color": "#531515"
+      }
+  ]
+},
+{
+  "featureType": "administrative.land_parcel",
+  "elementType": "geometry.fill",
+  "stylers": [
+      {
+          "visibility": "on"
+      },
+      {
+          "color": "#802424"
+      }
+  ]
+},
+{
+  "featureType": "landscape",
+  "elementType": "all",
+  "stylers": [
+      {
+          "color": "#f2f2f2"
+      }
+  ]
+},
+{
+  "featureType": "landscape.man_made",
+  "elementType": "geometry.fill",
+  "stylers": [
+      {
+          "visibility": "on"
+      },
+      {
+          "color": "#e9bac3"
+      }
+  ]
+},
+{
+  "featureType": "landscape.natural.landcover",
+  "elementType": "geometry.fill",
+  "stylers": [
+      {
+          "visibility": "on"
+      },
+      {
+          "color": "#f26e6e"
+      }
+  ]
+},
+{
+  "featureType": "landscape.natural.terrain",
+  "elementType": "geometry.fill",
+  "stylers": [
+      {
+          "visibility": "on"
+      },
+      {
+          "color": "#9c5f5f"
+      }
+  ]
+},
+{
+  "featureType": "poi",
+  "elementType": "all",
+  "stylers": [
+      {
+          "visibility": "off"
+      }
+  ]
+},
+{
+  "featureType": "poi.government",
+  "elementType": "geometry.fill",
+  "stylers": [
+      {
+          "visibility": "on"
+      },
+      {
+          "color": "#ad4747"
+      }
+  ]
+},
+{
+  "featureType": "poi.park",
+  "elementType": "geometry.fill",
+  "stylers": [
+      {
+          "color": "#828a8f"
+      },
+      {
+          "visibility": "on"
+      },
+      {
+          "saturation": "-29"
+      },
+      {
+          "lightness": "24"
+      }
+  ]
+},
+{
+  "featureType": "poi.school",
+  "elementType": "geometry.fill",
+  "stylers": [
+      {
+          "visibility": "on"
+      },
+      {
+          "color": "#bc344c"
+      }
+  ]
+},
+{
+  "featureType": "poi.school",
+  "elementType": "labels.text",
+  "stylers": [
+      {
+          "visibility": "on"
+      }
+  ]
+},
+{
+  "featureType": "poi.school",
+  "elementType": "labels.text.fill",
+  "stylers": [
+      {
+          "visibility": "on"
+      },
+      {
+          "color": "#000000"
+      },
+      {
+          "weight": "3.42"
+      }
+  ]
+},
+{
+  "featureType": "poi.school",
+  "elementType": "labels.text.stroke",
+  "stylers": [
+      {
+          "visibility": "on"
+      },
+      {
+          "hue": "#ff0000"
+      }
+  ]
+},
+{
+  "featureType": "road",
+  "elementType": "all",
+  "stylers": [
+      {
+          "saturation": -100
+      },
+      {
+          "lightness": 45
+      }
+  ]
+},
+{
+  "featureType": "road",
+  "elementType": "labels.text.fill",
+  "stylers": [
+      {
+          "visibility": "on"
+      },
+      {
+          "color": "#000000"
+      }
+  ]
+},
+{
+  "featureType": "road.highway",
+  "elementType": "all",
+  "stylers": [
+      {
+          "visibility": "simplified"
+      }
+  ]
+},
+{
+  "featureType": "road.highway",
+  "elementType": "labels.text.fill",
+  "stylers": [
+      {
+          "visibility": "on"
+      }
+  ]
+},
+{
+  "featureType": "road.arterial",
+  "elementType": "labels.text.fill",
+  "stylers": [
+      {
+          "visibility": "on"
+      },
+      {
+          "color": "#000000"
+      }
+  ]
+},
+{
+  "featureType": "road.arterial",
+  "elementType": "labels.icon",
+  "stylers": [
+      {
+          "visibility": "off"
+      }
+  ]
+},
+{
+  "featureType": "road.local",
+  "elementType": "labels.text.fill",
+  "stylers": [
+      {
+          "visibility": "on"
+      },
+      {
+          "color": "#000000"
+      }
+  ]
+},
+{
+  "featureType": "transit",
+  "elementType": "all",
+  "stylers": [
+      {
+          "visibility": "off"
+      }
+  ]
+},
+{
+  "featureType": "water",
+  "elementType": "all",
+  "stylers": [
+      {
+          "color": "#144458"
+      },
+      {
+          "visibility": "on"
+      }
+  ]
+}
 ];
 var largeInfowindow;
 var loc = 23;
 
 var locations = [{
-        title: 'Himeji Castle',
+        title: 'T-Town',
         location: {
-            lat: 34.8394,
-            lng: 134.6939
+          lat: 33.2089,
+          lng: -87.5692
         },
         description: "My favorite historical place in Japan. I love learning about medieval Japan and this castle was just so beautiful!"
-    },
-    {
-        title: 'Osaka Castle',
-        location: {
-            lat: 34.6873,
-            lng: 135.5262
-        },
-        description: "My favorite leader of Japan, Toyotomi Hideyoshi's castle, this castle was near my home while in Japan so I vistited it frequently."
-    },
-    {
-        title: 'Kobe Steakland',
-        location: {
-            lat: 34.6930,
-            lng: 135.1921
-        },
-        description: "I ate this on my last day in Japan. Kobe steak is so expensive, but so absolutely delicious."
-    },
-    {
-        title: 'Kwansei Gakuin University',
-        location: {
-            lat: 34.7679,
-            lng: 135.3466
-        },
-        description: "My university in Japan. I love this University. I spent 1 year studying here."
-    },
-    {
-        title: 'Kansai International Airport',
-        location: {
-            lat: 34.4320,
-            lng: 135.2304
-        },
-        description: "The airport where many adventures started and ended. I can't wait to come back to this airport."
-    },
-    {
-        title: 'Nagasaki',
-        location: {
-            lat: 32.7503,
-            lng: 129.8777
-        },
-        description: "My brother studied abroad here, It was quite hot when I visited but beautiful and sobering!"
-    },
-    {
-        title: 'Shibuya, Tokyo',
-        location: {
-            lat: 35.6618,
-            lng: 139.7041
-        },
-        description: "I only visited here for 2 days but I had an airbnb about 5 mins walk from the famous shibuya crossing. It was beautiful!"
-    },
-    {
-        title: 'Mount Koya',
-        location: {
-            lat: 34.2167,
-            lng: 135.5833
-        },
-        description: "I hiked the Choishimichi trail while I was here. It took 9 hours and was so amazing. I was so tired by the time I reached Koyasan."
-    },
-    {
-        title: 'Wakayama',
-        location: {
-            lat: 33.6782,
-            lng: 135.3481
-        },
-        description: "After my school got canceled for a week due to a bomb threat a couple friends and I spent a week at this beach town!"
-    },
-    {
-        title: 'Seoul',
-        location: {
-            lat: 37.5665,
-            lng: 126.9780
-        },
-        description: "I visited here for 4 days visited a friend who lived there. I disliked the haze but found the city to be beautiful!"
     }
 ];
 
@@ -383,11 +297,11 @@ function initMap() {
     // Constructor creates a new map - only center and zoom are required.
     map = new google.maps.Map(document.getElementById('map'), {
         center: {
-            lat: 33.2089,
-            lng: 87.5692
+            lat: 87.5692,
+            lng: 33.2089
         },
         styles: styles,
-        zoom: 6,
+        zoom: 12,
         mapTypeControl: false,
         streetViewControl: false,
         rotateControl: false
