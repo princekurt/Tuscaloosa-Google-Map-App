@@ -345,7 +345,7 @@ var locations = [{
         nature"
     },
     {
-        title: 'Wilhagens of Tuscaloosa"',
+        title: 'Wilhagens of Tuscaloosa',
         location: {
           lat: 33.211138,
           lng: -87.566414
