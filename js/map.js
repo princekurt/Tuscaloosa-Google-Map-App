@@ -383,8 +383,8 @@ function initMap() {
     // Constructor creates a new map - only center and zoom are required.
     map = new google.maps.Map(document.getElementById('map'), {
         center: {
-            lat: 36.34829,
-            lng: 138.596955
+            lat: 33.2089,
+            lng: 87.5692
         },
         styles: styles,
         zoom: 6,
