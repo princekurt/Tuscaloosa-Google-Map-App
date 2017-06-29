@@ -20,7 +20,7 @@ var initModel = function(largeInfowindow) {
         var temperature;
         var count = counter;
         var img = "https://maps.googleapis.com/maps/api/streetview?size=100x100&location=" + location.location.lat + "," + location.location.lng + "&heading=151.78&pitch=-0.76&key=AIzaSyDqAj0V0aqWvqxZzk9krzY3NGDbARplz6U";
-        var url = "http://api.openweathermap.org/data/2.5/weather?lat=" + location.location.lat + "&lon=" + location.location.lng + "&APPID=73c3ee276280b40f8967433d6ee34cf5";
+        var url = "https://api.openweathermap.org/data/2.5/weather?lat=" + location.location.lat + "&lon=" + location.location.lng + "&APPID=73c3ee276280b40f8967433d6ee34cf5";
         // makes call to weather api
         $.ajax({
             url: url,
