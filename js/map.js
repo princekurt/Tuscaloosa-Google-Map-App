@@ -288,8 +288,26 @@ var locations = [{
           lat: 33.2089,
           lng: -87.5692
         },
-        description: "My favorite historical place in Japan. I love learning about medieval Japan and this castle was just so beautiful!"
-    }
+        description: "The geographical center of town."
+    },
+    {
+            title: 'Bryant Denny Stadium',
+            location: {
+              lat: 33.208141,
+              lng: -87.550480
+            },
+            description: "Home to the University of Alabama Football. Drives \
+            in upwards of 150,000 people to town per game"
+        },
+    {
+            title: 'Pokeritto',
+            location: {
+              lat: 33.198154,
+              lng: -87.533740
+            },
+            description: "A great spin on sushi. This place actually has \
+            some of authentic tastes that I remember from Japan."
+    },
 ];
 
 
@@ -297,18 +315,24 @@ function initMap() {
     // Constructor creates a new map - only center and zoom are required.
     map = new google.maps.Map(document.getElementById('map'), {
         center: {
-            lat: 87.5692,
-            lng: 33.2089
+            lat: 33.2089,
+            lng: -87.550480
         },
         styles: styles,
-        zoom: 12,
+        zoom: 15,
         mapTypeControl: false,
-        streetViewControl: false,
+        streetViewControl: true,
         rotateControl: false
     });
 
     function makeMarkerIcon() {
-        var markerImage = new google.maps.MarkerImage('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+        var markerImage = new google.maps.MarkerImage(
+          './img/elephant.gif',
+          null, // Size is determined at runtime
+          null, // origin is 0,0
+          null, // Anchor is bottom center of the scaled image
+          new google.maps.Size(52,58)
+        );
         return markerImage;
     }
 
@@ -316,9 +340,6 @@ function initMap() {
 
     var largeInfowindow = new google.maps.InfoWindow();
 
-
-
-    var bounds = new google.maps.LatLngBounds();
     // The following group uses the location array to create an array of markers on initialize.
     for (var i = 0; i < locations.length; i++) {
         // Get the position from the location array.
@@ -336,10 +357,8 @@ function initMap() {
         // Push the marker to our array of markers.
         markers.push(marker);
         // Create an onclick event to open an infowindow at each marker.
-        bounds.extend(markers[i].position);
     }
-    // Extend the boundaries of the map for each marker
-    map.fitBounds(bounds);
+
     var largeInfowindow = new google.maps.InfoWindow({
         maxWidth: 320
     });
@@ -352,22 +371,22 @@ function initMap() {
 function populateInfoWindow(infowindow, location) {
     if (infowindow.marker != location.marker) {
         if (infowindow.marker != undefined) {
-            infowindow.marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+            infowindow.marker.setIcon('./img/elephant.gif',);
         }
 
         infowindow.marker = location.marker;
-        location.marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+        location.marker.setIcon('./img/elephant.gif');
         infowindow.setContent('<img style="border-radius: 100%; float: right" src="' + location.img + '">' + '<div><h1>' + location.marker.title + '</h1></div>' +
             '<div style="text-transform: capitalize">' + location.weather + '</div>' + '<div>' + location.temp.toFixed(2) + '&degC</div>' +
-            '<div>' + location.description + '</div>');
+            '<div>' + location.description +'</div>');
         infowindow.open(map, location.marker);
         infowindow.addListener('click', function() {
-            location.marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+            location.marker.setIcon('./img/elephant.gif');
             infowindow.setMarker(null);
         });
     } else {
         infowindow.marker = null;
-        location.marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+        location.marker.setIcon('./img/elephant.gif');
         infowindow.close();
     }
 }
