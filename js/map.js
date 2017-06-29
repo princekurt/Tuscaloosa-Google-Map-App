@@ -291,23 +291,68 @@ var locations = [{
         description: "The geographical center of town."
     },
     {
-            title: 'Bryant Denny Stadium',
-            location: {
-              lat: 33.208141,
-              lng: -87.550480
-            },
-            description: "Home to the University of Alabama Football. Drives \
-            in upwards of 150,000 people to town per game"
+        title: 'Bryant Denny Stadium',
+        location: {
+          lat: 33.208141,
+          lng: -87.550480
         },
-    {
-            title: 'Pokeritto',
-            location: {
-              lat: 33.198154,
-              lng: -87.533740
-            },
-            description: "A great spin on sushi. This place actually has \
-            some of authentic tastes that I remember from Japan."
+        description: "Home to the University of Alabama Football. Drives \
+        in upwards of 150,000 people to town per game"
     },
+    {
+        title: 'Pokeritto',
+        location: {
+          lat: 33.198154,
+          lng: -87.533740
+        },
+        description: "A great spin on sushi. This place actually has \
+        some of authentic tastes that I remember from Japan."
+    },
+    {
+        title: 'Dreamland Barbeque',
+        location: {
+          lat: 33.156418,
+          lng: -87.516947
+        },
+        description: "At one time voted the #1 ribs in America, this place \
+        is a must see if you come to Tusclaoosa"
+    },
+    {
+        title: 'Another Broken Egg',
+        location: {
+          lat: 33.217717,
+          lng: -87.558994
+        },
+        description: "A great place for breakfast. Our paddleboard club meets \
+        on the dock behind it."
+    },
+    {
+        title: 'Heritage House Coffee',
+        location: {
+          lat: 33.232932,
+          lng: -87.536814
+        },
+        description: "A great local coffee house. Has a fantastic atmosphere \
+        for studying"
+    },
+    {
+        title: 'Lake Nicole',
+        location: {
+          lat: 33.308886,
+          lng: -87.477361
+        },
+        description: "A beautiful lake to go paddleboarding or to just enjoy \
+        nature"
+    },
+    {
+        title: 'Wilhagens of Tuscaloosa"',
+        location: {
+          lat: 33.211138,
+          lng: -87.566414
+        },
+        description: "A great place for trivia on Thursday nights"
+    },
+
 ];
 
 
